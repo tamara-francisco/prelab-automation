@@ -71,3 +71,9 @@ def test_07_verify_cart_counter(driver):
 
     assert cart_counter == "1", f"ERROR: El contador de carrito no muestra 1 después de añadir un producto. Valor actual: {cart_counter}"
 
+#Navegar al carrito de compras
+def test_08_navigate_to_cart(driver):
+    cart_link = driver.find_element(By.CLASS_NAME, "shopping_cart_link")
+    cart_link.click()
+
+    assert "https://www.saucedemo.com/cart.html" in driver.current_url, f"ERROR: No se redirigió a la página del carrito."
