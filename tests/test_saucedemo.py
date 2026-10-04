@@ -73,7 +73,12 @@ def test_07_verify_cart_counter(driver):
 
 #Navegar al carrito de compras
 def test_08_navigate_to_cart(driver):
-    cart_link = driver.find_element(By.CLASS_NAME, "shopping_cart_link")
-    cart_link.click()
+    driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
 
-    assert "https://www.saucedemo.com/cart.html" in driver.current_url, f"ERROR: No se redirigió a la página del carrito."
+    assert "/cart.html" in driver.current_url, f"ERROR: No se redirigió a la página del carrito."
+
+
+#Comprobar que el producto añadido esté presente en el carrito
+def test_09_verify_product_in_cart(driver):
+    product_name = driver.find_element(By.CLASS_NAME, "inventory_item_name").text
+    assert product_name == "Sauce Labs Backpack", f"ERROR: El producto en el carrito no es 'Sauce Labs Backpack'. Producto encontrado: {product_name}"
